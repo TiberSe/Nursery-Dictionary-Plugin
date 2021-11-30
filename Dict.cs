@@ -23,7 +23,7 @@ namespace Septim.DictPlugin
 
     public class Dictionary : IPlugin {
         public string Name { get; } = "Septim.DictPlugin.Dictionary";
-        public string HelpText { get; } = "by Tiber Septim";
+        public string HelpText { get; } = "Dictionaly by Tiber Septim";
         Nursery.Plugins.Type IPlugin.Type => Nursery.Plugins.Type.Filter;
 
 
