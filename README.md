@@ -7,7 +7,7 @@ Nursery Dictionary Pluginは、[Nursery](https://github.com/noonworks/Nursery)(M
 <br>
 
 # 導入方法
-このフォルダの中身を丸ごとNursery.exeがあるフォルダに突っ込んだ後、[Nursery.exe]/plugins/plugins.jsonに下記のロードオーダーを追加してください
+Nursery-Dictionary-Plugin-Releaseの中身を丸ごとNursery.exeがあるフォルダに突っ込んだ後、[Nursery.exe]/plugins/plugins.jsonに下記のロードオーダーを追加してください
 
 ```json
     "Septim.DictPlugin.Dictionary",
@@ -35,6 +35,12 @@ Nursery Dictionary Pluginは、[Nursery](https://github.com/noonworks/Nursery)(M
 > ``` $forget args1 ```
 > 
 > args1の読みを削除する
+
+<br>
+
+> ## 辞書登録されている単語すべてを表示する
+> ``` $list ```
+> 
 
 <br>
 
