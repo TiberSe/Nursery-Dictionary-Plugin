@@ -16,6 +16,9 @@ Nursery Dictionary Pluginは、[Nursery](https://github.com/noonworks/Nursery)(M
 # 使用方法
 起動時に自動で有効化され、読み上げ内容に指定文字列があった場合に自動で置き換えます。
 
+<br>
+<br>
+
 # コマンド一覧
 
 > ## 新しく辞書に追加する
