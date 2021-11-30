@@ -8,31 +8,13 @@ using System.Linq;
 using System.Xml.Linq;
 
 namespace Septim.DictPlugin {
-    public class DictionaryCommandConfig
-    {
-        [JsonProperty("key")]
-        public string Key { get; set; } = "Dictionary";
-        [JsonProperty("value")]
-        public string Value { get; set; } = "ディクショナリー";
-    }
     public class DictionaryCommand : IPlugin {
 
         public string Name { get; } = "Septim.DictPlugin.DictionaryCommand";
         public string HelpText { get; } =  "Tiber's Dictionary Opeartion Commands"+"```$learn key value :keyの読みをvalueとして登録 \n $forget key :keyの読みを消去```";
         Nursery.Plugins.Type IPlugin.Type => Nursery.Plugins.Type.Command;
-        private DictionaryCommandConfig config = null;
 
-        public void Initialize(IPluginManager loader, IPlugin[] plugins) {
-            try {
-                this.config = loader.GetPluginSetting<DictionaryCommandConfig>(this.Name);
-            } catch (System.Exception e) {
-                Logger.DebugLog(e.ToString());
-                this.config = null;           
-            }
-            if (this.config == null) {
-                this.config = new DictionaryCommandConfig();
-            }
-        }
+        public void Initialize(IPluginManager loader, IPlugin[] plugins) {  }
 
         public bool Execute(IBot bot, IMessage message) {
             string[] args = message.Original.Content.Split(' ');
