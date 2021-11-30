@@ -3,6 +3,9 @@
 Nursery Dictionary Pluginは、[Nursery](https://github.com/noonworks/Nursery)(MIT Lincense ©2018 noonworks)に辞書機能を追加するプラグインです。
 現在日本語のみに対応しています。
 
+<br>
+<br>
+
 # 導入方法
 このフォルダの中身を丸ごとNursery.exeがあるフォルダに突っ込んだ後、[Nursery.exe]/plugins/plugins.jsonに下記のロードオーダーを追加してください
 
