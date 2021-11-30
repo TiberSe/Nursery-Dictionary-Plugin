@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using Nursery.Plugins;
 using Nursery.Utility;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
@@ -10,7 +11,7 @@ using System.Xml.Linq;
 namespace Septim.DictPlugin {
     public class DictionaryCommand : IPlugin {
         public string Name { get; } = "Septim.DictPlugin.DictionaryCommand";
-        public string HelpText { get; } =  "Tiber's Dictionary Opeartion Commands"+"```$learn key value :keyの読みをvalueとして登録 \n $forget key :keyの読みを消去```";
+        public string HelpText { get; } =  "Tiber's Dictionary Opeartion Commands"+"```$learn key value :keyの読みをvalueとして登録 \n $forget key :keyの読みを消去 \n $list :登録単語一覧を表示 ```";
         Nursery.Plugins.Type IPlugin.Type => Nursery.Plugins.Type.Command;
 
         public void Initialize(IPluginManager loader, IPlugin[] plugins) {  }
@@ -48,6 +49,18 @@ namespace Septim.DictPlugin {
                         message.Terminated = true;
                         return true;
                     }
+                case "$list":
+                    string dictionary_as_string = "単語/読み ```";
+                    foreach (DictionaryEntry dc in Global.Dict)
+                    {
+                        dictionary_as_string = dictionary_as_string + $" {dc.Key} : {dc.Value} \n";
+                    }
+                    dictionary_as_string = dictionary_as_string + "```";
+                    bot.SendMessageAsync(message.Original.Channel, $"{dictionary_as_string}", false);
+                    message.Content = "";
+                    message.AppliedPlugins.Add(this.Name);
+                    message.Terminated = true;
+                    return true;
                 case "$enableDictionary":
                     Global.status = true;
                     bot.SendMessageAsync(message.Original.Channel, "辞書機能を有効にしました。", true);
