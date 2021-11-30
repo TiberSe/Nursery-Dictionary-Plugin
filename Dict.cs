@@ -13,10 +13,8 @@ namespace Septim.DictPlugin
 {
     [JsonObject("Septim.DictPlugin.DictionaryConfig")]
     public class DictionaryConfig {
-        [JsonProperty("key")]
-        public string Key { get; set; } = "Dictionary";
-        [JsonProperty("value")]
-        public string Value { get; set; } = "ディクショナリー";
+        [JsonProperty("inService")]
+        public bool InService { get; set; } = true;
     }
     public static class Global {
         public static Hashtable Dict;
@@ -30,7 +28,7 @@ namespace Septim.DictPlugin
 
 
         private DictionaryConfig config = null;
-
+        public DictionaryConfig Config { get => config; }
         public void Initialize(IPluginManager loader, IPlugin[] plugins) {
             try {
                 this.config = loader.GetPluginSetting<DictionaryConfig>(this.Name);
@@ -38,11 +36,12 @@ namespace Septim.DictPlugin
                 Logger.DebugLog(e.ToString());
                 this.config = null;
             }
-            if (this.config == null) {
+            if (this.config == null) {  
                 this.config = new DictionaryConfig();
             }
-            Global.status = true;
-            DictionaryCommand.ReloadDictFile();
+            
+            Global.status = this.config.InService;
+            Global.Dict = Dictionary.LoadDictFile();
 
         }
 
