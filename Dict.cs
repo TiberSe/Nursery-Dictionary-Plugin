@@ -25,10 +25,9 @@ namespace Septim.DictPlugin
         public string Name { get; } = "Septim.DictPlugin.Dictionary";
         public string HelpText { get; } = "Dictionaly by Tiber Septim";
         Nursery.Plugins.Type IPlugin.Type => Nursery.Plugins.Type.Filter;
-
-
         private DictionaryConfig config = null;
         public DictionaryConfig Config { get => config; }
+        
         public void Initialize(IPluginManager loader, IPlugin[] plugins) {
             try {
                 this.config = loader.GetPluginSetting<DictionaryConfig>(this.Name);
@@ -38,11 +37,9 @@ namespace Septim.DictPlugin
             }
             if (this.config == null) {  
                 this.config = new DictionaryConfig();
-            }
-            
+            } 
             Global.status = this.config.InService;
             Global.Dict = Dictionary.LoadDictFile();
-
         }
 
         public bool Execute(IBot bot, IMessage message) {
@@ -53,8 +50,8 @@ namespace Septim.DictPlugin
             }
             message.AppliedPlugins.Add(this.Name);
             return true;
-
         }
+        
         public static Hashtable LoadDictFile() {
             XDocument xmlDic = XDocument.Load("./dictionary.xml");
             XElement xmlElement = xmlDic.Element("words");
